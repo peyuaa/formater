@@ -1,4 +1,4 @@
-module formater
+module github.com/peyuaa/formater
 
 go 1.22.4
 
