@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"strings"
 
 	"mohamed.attahri.com/jsonl"
 )
@@ -56,9 +57,11 @@ func main() {
 
 	formattedJokes := make(formatedJokes, 0, len(j))
 	for _, joke := range j {
+		// delete all \n from input and output
+
 		fj := formatedJoke{
-			Input:  joke.Context,
-			Output: joke.Utterance,
+			Input:  strings.Replace(joke.Context, "\n", "", -1),
+			Output: strings.Replace(joke.Utterance, "\n", "", -1),
 		}
 
 		formattedJokes = append(formattedJokes, fj)
