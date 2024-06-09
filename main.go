@@ -5,6 +5,8 @@ import (
 	"io"
 	"log"
 	"os"
+
+	"mohamed.attahri.com/jsonl"
 )
 
 const (
@@ -74,18 +76,13 @@ func main() {
 		}
 	}(outFile)
 
-	outBytes, err := json.Marshal(formattedJokes)
-	if err != nil {
-		log.Fatal("couldn't marshal json", err)
-	}
-
-	_, err = outFile.Write(outBytes)
-	if err != nil {
-		log.Fatal("couldn't write json", err)
+	writer := jsonl.NewWriter[formatedJoke](outFile)
+	if _, err := writer.Write(formattedJokes...); err != nil {
+		log.Fatal(err)
 	}
 
 	err = outFile.Sync()
 	if err != nil {
-		log.Fatal("couldn't sync output file", err)
+		log.Fatal("couldn't sync file", err)
 	}
 }
