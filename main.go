@@ -12,7 +12,7 @@ import (
 const (
 	input = "jokes.json"
 
-	output = "jokes_formated.json"
+	output = "jokes_formated.jsonl"
 )
 
 type jokes []joke
