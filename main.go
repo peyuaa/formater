@@ -59,9 +59,16 @@ func main() {
 	for _, joke := range j {
 		// delete all \n from input and output
 
+		inputStr := strings.Replace(strings.Replace(joke.Context, "\n", " ", -1), ",", ".", -1)
+		outputStr := strings.Replace(strings.Replace(joke.Utterance, "\n", " ", -1), ",", ".", -1)
+
+		if len(inputStr) > 80 || len(outputStr) > 80 {
+			continue
+		}
+
 		fj := formatedJoke{
-			Input:  strings.Replace(strings.Replace(joke.Context, "\n", " ", -1), ",", ".", -1),
-			Output: strings.Replace(strings.Replace(joke.Utterance, "\n", " ", -1), ",", ".", -1),
+			Input:  inputStr,
+			Output: outputStr,
 		}
 
 		formattedJokes = append(formattedJokes, fj)
