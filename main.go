@@ -60,8 +60,8 @@ func main() {
 		// delete all \n from input and output
 
 		fj := formatedJoke{
-			Input:  strings.Replace(joke.Context, "\n", "", -1),
-			Output: strings.Replace(joke.Utterance, "\n", "", -1),
+			Input:  strings.Replace(strings.Replace(joke.Context, "\n", " ", -1), ",", ".", -1),
+			Output: strings.Replace(strings.Replace(joke.Utterance, "\n", " ", -1), ",", ".", -1),
 		}
 
 		formattedJokes = append(formattedJokes, fj)
